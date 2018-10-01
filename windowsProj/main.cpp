@@ -1,8 +1,10 @@
 #include <windows.h>
-#include <WindowsX.h.>
+#include <WindowsX.h>
 #include <d2d1.h>
 #include <vector>
 #include <cmath>
+#include <ctime>
+
 #pragma comment(lib, "d2d1")
 
   
@@ -73,7 +75,7 @@ template <class T> void SafeRelease(T **ppT)
 	if (*ppT)
 	{
 		(*ppT)->Release();
-		*ppT = NULL;
+		*ppT = nullptr;
 	}
 }
 
@@ -93,6 +95,7 @@ class MainWindow : public BaseWindow<MainWindow>
 	void    Resize();
 	void    LButtonDownPressed(LPARAM);
 	void    LButtonUpPressed(LPARAM);
+	void    CheckThreeInARow();
 
 public:
 
@@ -115,13 +118,22 @@ void MainWindow::CalculateLayout()
 		float x = radius;
 		float y = radius;
 		ellipses.resize(10);
+		
 		for (auto &i : ellipses)
 		{
 			i.resize(10);
 			for (auto &j : i)
 			{
 				j.first = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
-				j.second = D2D1::ColorF(1.0f, 1.0f, 0);
+
+				int rndVal = std::rand() % 3 + 1;
+				if (rndVal == 1)
+					j.second = D2D1::ColorF(1.0f, 0, 0);
+				else if (rndVal == 2)
+					j.second = D2D1::ColorF(0, 1.0f, 0);
+				else if (rndVal == 3)
+					j.second = D2D1::ColorF(0, 0, 1.0f);
+
 				x += radius * 2;
 			}
 			x = radius;
@@ -138,7 +150,7 @@ HRESULT MainWindow::CreateGraphicsResources()
 		RECT rc;
 		GetClientRect(m_hwnd, &rc);
 
-		D2D1_SIZE_U size = D2D1::SizeU(rc.right, rc.bottom);
+		const D2D1_SIZE_U size = D2D1::SizeU(rc.right, rc.bottom);
 
 		hr = pFactory->CreateHwndRenderTarget(
 			D2D1::RenderTargetProperties(),
@@ -171,7 +183,7 @@ void MainWindow::OnPaint()
 	if (SUCCEEDED(hr))
 	{
 		PAINTSTRUCT ps;
-		BeginPaint(m_hwnd, &ps);
+		::BeginPaint(m_hwnd, &ps);
 
 		pRenderTarget->BeginDraw();
 
@@ -229,8 +241,9 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 
 	if (abs(iPos - ptMouse.first) + abs(jPos - ptMouse.second) == 1)
 	{
-		ellipses[iPos][jPos].second = D2D1::ColorF(0, 1.0f, 1.0f);
-		ellipses[ptMouse.first][ptMouse.second].second = D2D1::ColorF(0, 1.0f, 0);
+		D2D1_COLOR_F tempColor = ellipses[ptMouse.first][ptMouse.second].second;
+		ellipses[ptMouse.first][ptMouse.second].second = ellipses[iPos][jPos].second;
+		ellipses[iPos][jPos].second = tempColor;
 
 		pRenderTarget->BeginDraw();
 
@@ -244,8 +257,14 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 	}
 }
 
+void MainWindow::CheckThreeInARow()
+{
+
+}
+
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow)
 {
+	std::srand(unsigned(std::time(0)));
 	MainWindow win;
 
 	if (!win.Create(L"Circle", WS_OVERLAPPEDWINDOW))
