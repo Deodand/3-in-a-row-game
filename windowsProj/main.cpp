@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <d2d1.h>
+#include <vector>
 #pragma comment(lib, "d2d1")
 
   
@@ -36,7 +37,7 @@ public:
 	BaseWindow() : m_hwnd(NULL) { }
 
 	BOOL Create(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle = 0, int x = CW_USEDEFAULT,
-		int y = CW_USEDEFAULT, int nWidth = CW_USEDEFAULT, int nHeight = CW_USEDEFAULT, HWND hWndParent = 0, HMENU hMenu = 0
+		int y = CW_USEDEFAULT, int nWidth = 400, int nHeight = 400, HWND hWndParent = 0, HMENU hMenu = 0
 	)
 	{
 		WNDCLASS wc = { 0 };
@@ -76,10 +77,11 @@ template <class T> void SafeRelease(T **ppT)
 
 class MainWindow : public BaseWindow<MainWindow>
 {
-	ID2D1Factory            *pFactory;
-	ID2D1HwndRenderTarget   *pRenderTarget;
-	ID2D1SolidColorBrush    *pBrush;
-	D2D1_ELLIPSE            ellipse;
+	ID2D1Factory              *pFactory;
+	ID2D1HwndRenderTarget     *pRenderTarget;
+	ID2D1SolidColorBrush      *pBrush;
+	std::vector<D2D1_ELLIPSE>  ellipses;
+	//D2D1_ELLIPSE             ellipse;
 
 	void    CalculateLayout();
 	HRESULT CreateGraphicsResources();
@@ -104,10 +106,15 @@ void MainWindow::CalculateLayout()
 	if (pRenderTarget != NULL)
 	{
 		D2D1_SIZE_F size = pRenderTarget->GetSize();
-		const float x = size.width / 2;
-		const float y = size.height / 2;
-		const float radius = min(x, y);
-		ellipse = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
+		const float radius = size.height / 10;
+		float x = size.width / 10;
+		float y = size.height / 10;
+		ellipses.resize(10);
+		for (auto i : ellipses)
+		{
+			i = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
+			x += radius * 2;
+		}
 	}
 }
 
@@ -157,7 +164,10 @@ void MainWindow::OnPaint()
 		pRenderTarget->BeginDraw();
 
 		pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
-		pRenderTarget->FillEllipse(ellipse, pBrush);
+		for (auto i : ellipses)
+		{
+			pRenderTarget->FillEllipse(i, pBrush);
+		}
 
 		hr = pRenderTarget->EndDraw();
 		if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
