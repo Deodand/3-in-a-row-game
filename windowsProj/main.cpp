@@ -1,6 +1,8 @@
 #include <windows.h>
+#include <WindowsX.h.>
 #include <d2d1.h>
 #include <vector>
+#include <cmath>
 #pragma comment(lib, "d2d1")
 
   
@@ -37,7 +39,7 @@ public:
 	BaseWindow() : m_hwnd(NULL) { }
 
 	BOOL Create(PCWSTR lpWindowName, DWORD dwStyle, DWORD dwExStyle = 0, int x = CW_USEDEFAULT,
-		int y = CW_USEDEFAULT, int nWidth = 400, int nHeight = 400, HWND hWndParent = 0, HMENU hMenu = 0
+		int y = CW_USEDEFAULT, int nWidth = 400, int nHeight = 425, HWND hWndParent = 0, HMENU hMenu = 0
 	)
 	{
 		WNDCLASS wc = { 0 };
@@ -77,21 +79,24 @@ template <class T> void SafeRelease(T **ppT)
 
 class MainWindow : public BaseWindow<MainWindow>
 {
-	ID2D1Factory              *pFactory;
-	ID2D1HwndRenderTarget     *pRenderTarget;
-	ID2D1SolidColorBrush      *pBrush;
-	std::vector<D2D1_ELLIPSE>  ellipses;
-	//D2D1_ELLIPSE             ellipse;
+	ID2D1Factory          *pFactory;
+	ID2D1HwndRenderTarget *pRenderTarget;
+	ID2D1SolidColorBrush  *pBrush;
+	std::vector<std::vector<std::pair<D2D1_ELLIPSE, D2D1_COLOR_F> > > ellipses;
+	std::pair<int, int>    ptMouse;
+	
 
 	void    CalculateLayout();
 	HRESULT CreateGraphicsResources();
 	void    DiscardGraphicsResources();
 	void    OnPaint();
 	void    Resize();
+	void    LButtonDownPressed(LPARAM);
+	void    LButtonUpPressed(LPARAM);
 
 public:
 
-	MainWindow() : pFactory(NULL), pRenderTarget(NULL), pBrush(NULL)
+	MainWindow() : pFactory(NULL), pRenderTarget(NULL), pBrush(NULL), ptMouse(0,0)
 	{
 	}
 
@@ -106,14 +111,21 @@ void MainWindow::CalculateLayout()
 	if (pRenderTarget != NULL)
 	{
 		D2D1_SIZE_F size = pRenderTarget->GetSize();
-		const float radius = size.height / 10;
-		float x = size.width / 10;
-		float y = size.height / 10;
+		const float radius = size.width / 20;
+		float x = radius;
+		float y = radius;
 		ellipses.resize(10);
-		for (auto i : ellipses)
+		for (auto &i : ellipses)
 		{
-			i = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
-			x += radius * 2;
+			i.resize(10);
+			for (auto &j : i)
+			{
+				j.first = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
+				j.second = D2D1::ColorF(1.0f, 1.0f, 0);
+				x += radius * 2;
+			}
+			x = radius;
+			y += radius * 2;
 		}
 	}
 }
@@ -164,9 +176,14 @@ void MainWindow::OnPaint()
 		pRenderTarget->BeginDraw();
 
 		pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
-		for (auto i : ellipses)
+
+		for (auto const &i : ellipses)
 		{
-			pRenderTarget->FillEllipse(i, pBrush);
+			for (auto const &j : i)
+			{
+				pRenderTarget->CreateSolidColorBrush(j.second, &pBrush);
+				pRenderTarget->FillEllipse(j.first, pBrush);
+			}
 		}
 
 		hr = pRenderTarget->EndDraw();
@@ -190,6 +207,40 @@ void MainWindow::Resize()
 		pRenderTarget->Resize(size);
 		CalculateLayout();
 		InvalidateRect(m_hwnd, NULL, FALSE);
+	}
+}
+
+void MainWindow::LButtonDownPressed(LPARAM lParam)
+{
+	int xPos = GET_X_LPARAM(lParam);
+	int yPos = GET_Y_LPARAM(lParam);
+	int jPos = xPos / (ellipses[0][0].first.radiusX * 2);
+	int iPos = yPos / (ellipses[0][0].first.radiusX * 2);
+	ptMouse.first = iPos;
+	ptMouse.second = jPos;
+}
+
+void MainWindow::LButtonUpPressed(LPARAM lParam)
+{
+	int xPos = GET_X_LPARAM(lParam);
+	int yPos = GET_Y_LPARAM(lParam);
+	int jPos = xPos / (ellipses[0][0].first.radiusX * 2);
+	int iPos = yPos / (ellipses[0][0].first.radiusX * 2);
+
+	if (abs(iPos - ptMouse.first) + abs(jPos - ptMouse.second) == 1)
+	{
+		ellipses[iPos][jPos].second = D2D1::ColorF(0, 1.0f, 1.0f);
+		ellipses[ptMouse.first][ptMouse.second].second = D2D1::ColorF(0, 1.0f, 0);
+
+		pRenderTarget->BeginDraw();
+
+		pRenderTarget->CreateSolidColorBrush(ellipses[iPos][jPos].second, &pBrush);
+		pRenderTarget->FillEllipse(&ellipses[iPos][jPos].first, pBrush);
+
+		pRenderTarget->CreateSolidColorBrush(ellipses[ptMouse.first][ptMouse.second].second, &pBrush);
+		pRenderTarget->FillEllipse(&ellipses[ptMouse.first][ptMouse.second].first, pBrush);
+
+		pRenderTarget->EndDraw();
 	}
 }
 
@@ -237,12 +288,16 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		OnPaint();
 		return 0;
+
 	case WM_SIZE:
 		Resize();
 		return 0;
+
 	case WM_LBUTTONDOWN:
-		DestroyWindow(m_hwnd);
+		LButtonDownPressed(lParam);
 		return 0;
+	case WM_LBUTTONUP:
+		LButtonUpPressed(lParam);
 	}
 	return DefWindowProc(m_hwnd, uMsg, wParam, lParam);
 }
