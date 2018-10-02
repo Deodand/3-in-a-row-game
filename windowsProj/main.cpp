@@ -259,7 +259,14 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 
 void MainWindow::CheckThreeInARow()
 {
-
+	std::vector<>
+	for (auto &i : ellipses)
+	{
+		for (auto &j : i)
+		{
+			
+		}
+	}
 }
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow)
