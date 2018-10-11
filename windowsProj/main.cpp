@@ -87,6 +87,8 @@ class MainWindow : public BaseWindow<MainWindow>
 	std::vector<std::vector<std::pair<D2D1_ELLIPSE, D2D1_COLOR_F> > > ellipses;
 	std::pair<int, int>    ptMouse;
 	
+	void BeginDraw();
+	HRESULT EndDraw();
 
 	void    CalculateLayout();
 	HRESULT CreateGraphicsResources();
@@ -95,7 +97,9 @@ class MainWindow : public BaseWindow<MainWindow>
 	void    Resize();
 	void    LButtonDownPressed(LPARAM);
 	void    LButtonUpPressed(LPARAM);
+	D2D1_COLOR_F GetRandColor();
 	bool    CheckThreeInARow();
+
 
 public:
 
@@ -106,6 +110,26 @@ public:
 	PCWSTR  ClassName() const { return L"Circle Window Class"; }
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
+
+
+bool operator == (const D2D1_COLOR_F A, const D2D1_COLOR_F B)
+{
+	if (A.r != B.r) return 0;
+	if (A.g != B.g) return 0;
+	if (A.b != B.b) return 0;
+	if (A.a != B.a) return 0;
+	return 1;
+}
+
+void MainWindow::BeginDraw()
+{
+	return pRenderTarget->BeginDraw();
+}
+
+HRESULT MainWindow::EndDraw()
+{
+	return pRenderTarget->EndDraw();
+}
 
 // Recalculate drawing layout when the size of the window changes.
 
@@ -125,21 +149,7 @@ void MainWindow::CalculateLayout()
 			for (auto &j : i)
 			{
 				j.first = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
-
-				int rndVal = std::rand() % 6 + 1;
-				if (rndVal == 1)
-					j.second = D2D1::ColorF(1.0f, 0, 0);
-				else if (rndVal == 2)
-					j.second = D2D1::ColorF(0, 1.0f, 0);
-				else if (rndVal == 3)
-					j.second = D2D1::ColorF(0, 0, 1.0f);
-				else if (rndVal == 4)
-					j.second = D2D1::ColorF(1.0f, 1.0, 0);
-				else if (rndVal == 5)
-					j.second = D2D1::ColorF(0, 1.0f, 1.0f);
-				else if (rndVal == 6)
-					j.second = D2D1::ColorF(1.0f, 0, 1.0f);
-
+				j.second = GetRandColor();
 				x += radius * 2;
 			}
 			x = radius;
@@ -192,7 +202,7 @@ void MainWindow::OnPaint()
 		PAINTSTRUCT ps;
 		::BeginPaint(m_hwnd, &ps);
 
-		pRenderTarget->BeginDraw();
+		BeginDraw();
 
 		pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
 
@@ -205,7 +215,7 @@ void MainWindow::OnPaint()
 			}
 		}
 
-		hr = pRenderTarget->EndDraw();
+		hr = EndDraw();
 		if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
 		{
 			DiscardGraphicsResources();
@@ -252,7 +262,7 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 		ellipses[ptMouse.first][ptMouse.second].second = ellipses[iPos][jPos].second;
 		ellipses[iPos][jPos].second = tempColor;
 
-		pRenderTarget->BeginDraw();
+		BeginDraw();
 
 		pRenderTarget->CreateSolidColorBrush(ellipses[iPos][jPos].second, &pBrush);
 		pRenderTarget->FillEllipse(&ellipses[iPos][jPos].first, pBrush);
@@ -260,22 +270,31 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 		pRenderTarget->CreateSolidColorBrush(ellipses[ptMouse.first][ptMouse.second].second, &pBrush);
 		pRenderTarget->FillEllipse(&ellipses[ptMouse.first][ptMouse.second].first, pBrush);
 
-		pRenderTarget->EndDraw();
+		EndDraw();
 		while (CheckThreeInARow()) {}
 	}
 }
 
-bool operator == (const D2D1_COLOR_F A, const D2D1_COLOR_F B)
+D2D1_COLOR_F MainWindow::GetRandColor()
 {
-	if (A.r != B.r) return 0;
-	if (A.g != B.g) return 0;
-	if (A.b != B.b) return 0;
-	if (A.a != B.a) return 0;
-	return 1;
+	int rndVal = std::rand() % 6 + 1;
+	if (rndVal == 1)
+		return D2D1::ColorF(1.0f, 0, 0);
+	else if (rndVal == 2)
+		return D2D1::ColorF(0, 1.0f, 0);
+	else if (rndVal == 3)
+		return D2D1::ColorF(0, 0, 1.0f);
+	else if (rndVal == 4)
+		return D2D1::ColorF(1.0f, 1.0, 0);
+	else if (rndVal == 5)
+		return D2D1::ColorF(0, 1.0f, 1.0f);
+	else if (rndVal == 6)
+		return D2D1::ColorF(1.0f, 0, 1.0f);
 }
 
 bool MainWindow::CheckThreeInARow()
 {
+	D2D1_COLOR_F color;
 	for (int i = 0; i < ellipses.size(); ++i)
 	{
 		for (int j = 2; j < ellipses[0].size(); ++j)
@@ -283,31 +302,24 @@ bool MainWindow::CheckThreeInARow()
 			if (ellipses[i][j - 2].second == ellipses[i][j - 1].second &&
 				ellipses[i][j - 2].second == ellipses[i][j].second)
 			{
-				D2D1_COLOR_F color;
-				pRenderTarget->BeginDraw();
+				BeginDraw();
 
 				for (int k = 0; k < 3; ++k)
 				{
-					int rndVal = std::rand() % 6 + 1;
-					if (rndVal == 1)
-						color = D2D1::ColorF(1.0f, 0, 0);
-					else if (rndVal == 2)
-						color = D2D1::ColorF(0, 1.0f, 0);
-					else if (rndVal == 3)
-						color = D2D1::ColorF(0, 0, 1.0f);
-					else if (rndVal == 4)
-						color = D2D1::ColorF(1.0f, 1.0, 0);
-					else if (rndVal == 5)
-						color = D2D1::ColorF(0, 1.0f, 1.0f);
-					else if (rndVal == 6)
-						color = D2D1::ColorF(1.0f, 0, 1.0f);
-
+					for (int i2 = i; i2 > 0; --i2)
+					{
+						color = ellipses[i2-1][j-k].second;
+						pRenderTarget->CreateSolidColorBrush(color, &pBrush);
+						pRenderTarget->FillEllipse(&ellipses[i2][j - k].first, pBrush);
+						ellipses[i2][j - k].second = color;
+					}
+					color = GetRandColor();
 					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-					pRenderTarget->FillEllipse(&ellipses[i][j - k].first, pBrush);
-					ellipses[i][j - k].second = color;
+					pRenderTarget->FillEllipse(&ellipses[0][j - k].first, pBrush);
+					ellipses[0][j - k].second = color;
 				}
 
-				pRenderTarget->EndDraw();
+				EndDraw();
 				return 1;
 			}
 		}
@@ -317,34 +329,28 @@ bool MainWindow::CheckThreeInARow()
 	{
 		for (int j = 0; j < ellipses[0].size(); ++j)
 		{
-			if (ellipses[i-2][j].second == ellipses[i- 1][j].second &&
+			if (ellipses[i-2][j].second == ellipses[i-1][j].second &&
 				ellipses[i-2][j].second == ellipses[i][j].second)
 			{
-				D2D1_COLOR_F color;
-				pRenderTarget->BeginDraw();
+				BeginDraw();
+
+				for (int i2 = i; i2 > 2; --i2)
+				{
+					color = ellipses[i2 - 3][j].second;
+					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
+					pRenderTarget->FillEllipse(&ellipses[i2][j].first, pBrush);
+					ellipses[i2][j].second = color;
+				}
 
 				for (int k = 0; k < 3; ++k)
 				{
-					int rndVal = std::rand() % 6 + 1;
-					if (rndVal == 1)
-						color = D2D1::ColorF(1.0f, 0, 0);
-					else if (rndVal == 2)
-						color = D2D1::ColorF(0, 1.0f, 0);
-					else if (rndVal == 3)
-						color = D2D1::ColorF(0, 0, 1.0f);
-					else if (rndVal == 4)
-						color = D2D1::ColorF(1.0f, 1.0, 0);
-					else if (rndVal == 5)
-						color = D2D1::ColorF(0, 1.0f, 1.0f);
-					else if (rndVal == 6)
-						color = D2D1::ColorF(1.0f, 0, 1.0f);
-
+					color = GetRandColor();
 					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-					pRenderTarget->FillEllipse(&ellipses[i - k][j].first, pBrush);
-					ellipses[i - k][j].second = color;
+					pRenderTarget->FillEllipse(&ellipses[k][j].first, pBrush);
+					ellipses[k][j].second = color;
 				}
 
-				pRenderTarget->EndDraw();
+				EndDraw();
 				return 1;
 			}
 		}
