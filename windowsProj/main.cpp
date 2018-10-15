@@ -4,6 +4,9 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
+#include <wrl\client.h>
+
+
 
 #pragma comment(lib, "d2d1")
 
@@ -70,40 +73,79 @@ protected:
 	HWND m_hwnd;
 };
 
-template <class T> void SafeRelease(T **ppT)
+
+namespace Helpers
 {
-	if (*ppT)
+	bool ColorEqual(const D2D1_COLOR_F A, const D2D1_COLOR_F B)
 	{
-		(*ppT)->Release();
-		*ppT = nullptr;
+		if (A.r != B.r) return 0;
+		if (A.g != B.g) return 0;
+		if (A.b != B.b) return 0;
+		if (A.a != B.a) return 0;
+		return 1;
+	}
+
+	D2D1_COLOR_F GetRandColor()
+	{
+		D2D1_COLOR_F color;
+		int rndVal = std::rand() % 6 + 1;
+		switch (rndVal)
+		{
+		case 1 :
+			color = D2D1::ColorF(1.0f, 0, 0);
+			break;
+		case 2:
+			color = D2D1::ColorF(0, 1.0f, 0);
+			break;
+		case 3:
+			color = D2D1::ColorF(0, 0, 1.0f);
+				break;
+		case 4:
+			color = D2D1::ColorF(1.0f, 1.0, 0);
+				break;
+		case 5:
+			color = D2D1::ColorF(0, 1.0f, 1.0f);
+				break;
+		case 6:
+			color = D2D1::ColorF(1.0f, 0, 1.0f);
+				break;
+		default:
+			color = D2D1::ColorF(0, 0, 0);
+		}
+		return color;
 	}
 }
 
+struct ellipseStruct
+{
+	D2D1_ELLIPSE ellipse;
+	D2D1_COLOR_F color;
+};
+
 class MainWindow : public BaseWindow<MainWindow>
 {
-	ID2D1Factory          *pFactory;
-	ID2D1HwndRenderTarget *pRenderTarget;
-	ID2D1SolidColorBrush  *pBrush;
-	std::vector<std::vector<std::pair<D2D1_ELLIPSE, D2D1_COLOR_F> > > ellipses;
+	Microsoft::WRL::ComPtr<ID2D1Factory>          pFactory;
+	Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> pRenderTarget;
+	Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  pBrush;
+	std::vector<std::vector<ellipseStruct> > ellipses;
 	std::pair<int, int>    ptMouse;
 	
-	void BeginDraw();
-	HRESULT EndDraw();
 
 	void    CalculateLayout();
 	HRESULT CreateGraphicsResources();
 	void    DiscardGraphicsResources();
+	void    BeginDraw();
+	HRESULT EndDraw();
 	void    OnPaint();
 	void    Resize();
 	void    LButtonDownPressed(LPARAM);
 	void    LButtonUpPressed(LPARAM);
-	D2D1_COLOR_F GetRandColor();
 	bool    CheckThreeInARow();
 
 
 public:
 
-	MainWindow() : pFactory(NULL), pRenderTarget(NULL), pBrush(NULL), ptMouse(0,0)
+	MainWindow() : pFactory(), pRenderTarget(), pBrush(), ptMouse(0,0)
 	{
 	}
 
@@ -111,25 +153,6 @@ public:
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
 
-
-bool operator == (const D2D1_COLOR_F A, const D2D1_COLOR_F B)
-{
-	if (A.r != B.r) return 0;
-	if (A.g != B.g) return 0;
-	if (A.b != B.b) return 0;
-	if (A.a != B.a) return 0;
-	return 1;
-}
-
-void MainWindow::BeginDraw()
-{
-	return pRenderTarget->BeginDraw();
-}
-
-HRESULT MainWindow::EndDraw()
-{
-	return pRenderTarget->EndDraw();
-}
 
 // Recalculate drawing layout when the size of the window changes.
 
@@ -148,8 +171,8 @@ void MainWindow::CalculateLayout()
 			i.resize(10);
 			for (auto &j : i)
 			{
-				j.first = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
-				j.second = GetRandColor();
+				j.ellipse = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
+				j.color = Helpers::GetRandColor();
 				x += radius * 2;
 			}
 			x = radius;
@@ -190,8 +213,8 @@ HRESULT MainWindow::CreateGraphicsResources()
 
 void MainWindow::DiscardGraphicsResources()
 {
-	SafeRelease(&pRenderTarget);
-	SafeRelease(&pBrush);
+	pRenderTarget.Reset();
+	pBrush.Reset();
 }
 
 void MainWindow::OnPaint()
@@ -210,8 +233,8 @@ void MainWindow::OnPaint()
 		{
 			for (auto const &j : i)
 			{
-				pRenderTarget->CreateSolidColorBrush(j.second, &pBrush);
-				pRenderTarget->FillEllipse(j.first, pBrush);
+				pRenderTarget->CreateSolidColorBrush(j.color, &pBrush);
+				pRenderTarget->FillEllipse(j.ellipse, pBrush.Get());
 			}
 		}
 
@@ -222,6 +245,16 @@ void MainWindow::OnPaint()
 		}
 		EndPaint(m_hwnd, &ps);
 	}
+}
+
+void MainWindow::BeginDraw()
+{
+	return pRenderTarget->BeginDraw();
+}
+
+HRESULT MainWindow::EndDraw()
+{
+	return pRenderTarget->EndDraw();
 }
 
 void MainWindow::Resize()
@@ -243,8 +276,8 @@ void MainWindow::LButtonDownPressed(LPARAM lParam)
 {
 	int xPos = GET_X_LPARAM(lParam);
 	int yPos = GET_Y_LPARAM(lParam);
-	int jPos = xPos / (ellipses[0][0].first.radiusX * 2);
-	int iPos = yPos / (ellipses[0][0].first.radiusX * 2);
+	int jPos = xPos / (ellipses[0][0].ellipse.radiusX * 2);
+	int iPos = yPos / (ellipses[0][0].ellipse.radiusX * 2);
 	ptMouse.first = iPos;
 	ptMouse.second = jPos;
 }
@@ -253,43 +286,26 @@ void MainWindow::LButtonUpPressed(LPARAM lParam)
 {
 	int xPos = GET_X_LPARAM(lParam);
 	int yPos = GET_Y_LPARAM(lParam);
-	int jPos = xPos / (ellipses[0][0].first.radiusX * 2);
-	int iPos = yPos / (ellipses[0][0].first.radiusX * 2);
+	int jPos = xPos / (ellipses[0][0].ellipse.radiusX * 2);
+	int iPos = yPos / (ellipses[0][0].ellipse.radiusX * 2);
 
 	if (abs(iPos - ptMouse.first) + abs(jPos - ptMouse.second) == 1)
 	{
-		D2D1_COLOR_F tempColor = ellipses[ptMouse.first][ptMouse.second].second;
-		ellipses[ptMouse.first][ptMouse.second].second = ellipses[iPos][jPos].second;
-		ellipses[iPos][jPos].second = tempColor;
+		D2D1_COLOR_F tempColor = ellipses[ptMouse.first][ptMouse.second].color;
+		ellipses[ptMouse.first][ptMouse.second].color = ellipses[iPos][jPos].color;
+		ellipses[iPos][jPos].color = tempColor;
 
 		BeginDraw();
 
-		pRenderTarget->CreateSolidColorBrush(ellipses[iPos][jPos].second, &pBrush);
-		pRenderTarget->FillEllipse(&ellipses[iPos][jPos].first, pBrush);
+		pRenderTarget->CreateSolidColorBrush(ellipses[iPos][jPos].color, &pBrush);
+		pRenderTarget->FillEllipse(&ellipses[iPos][jPos].ellipse, pBrush.Get());
 
-		pRenderTarget->CreateSolidColorBrush(ellipses[ptMouse.first][ptMouse.second].second, &pBrush);
-		pRenderTarget->FillEllipse(&ellipses[ptMouse.first][ptMouse.second].first, pBrush);
+		pRenderTarget->CreateSolidColorBrush(ellipses[ptMouse.first][ptMouse.second].color, &pBrush);
+		pRenderTarget->FillEllipse(&ellipses[ptMouse.first][ptMouse.second].ellipse, pBrush.Get());
 
 		EndDraw();
 		while (CheckThreeInARow()) {}
 	}
-}
-
-D2D1_COLOR_F MainWindow::GetRandColor()
-{
-	int rndVal = std::rand() % 6 + 1;
-	if (rndVal == 1)
-		return D2D1::ColorF(1.0f, 0, 0);
-	else if (rndVal == 2)
-		return D2D1::ColorF(0, 1.0f, 0);
-	else if (rndVal == 3)
-		return D2D1::ColorF(0, 0, 1.0f);
-	else if (rndVal == 4)
-		return D2D1::ColorF(1.0f, 1.0, 0);
-	else if (rndVal == 5)
-		return D2D1::ColorF(0, 1.0f, 1.0f);
-	else if (rndVal == 6)
-		return D2D1::ColorF(1.0f, 0, 1.0f);
 }
 
 bool MainWindow::CheckThreeInARow()
@@ -299,8 +315,8 @@ bool MainWindow::CheckThreeInARow()
 	{
 		for (int j = 2; j < ellipses[0].size(); ++j)
 		{
-			if (ellipses[i][j - 2].second == ellipses[i][j - 1].second &&
-				ellipses[i][j - 2].second == ellipses[i][j].second)
+			if (Helpers::ColorEqual(ellipses[i][j - 2].color, ellipses[i][j - 1].color) &&
+				Helpers::ColorEqual(ellipses[i][j - 2].color, ellipses[i][j].color))
 			{
 				BeginDraw();
 
@@ -308,15 +324,15 @@ bool MainWindow::CheckThreeInARow()
 				{
 					for (int i2 = i; i2 > 0; --i2)
 					{
-						color = ellipses[i2-1][j-k].second;
+						color = ellipses[i2-1][j-k].color;
 						pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-						pRenderTarget->FillEllipse(&ellipses[i2][j - k].first, pBrush);
-						ellipses[i2][j - k].second = color;
+						pRenderTarget->FillEllipse(&ellipses[i2][j - k].ellipse, pBrush.Get());
+						ellipses[i2][j - k].color = color;
 					}
-					color = GetRandColor();
+					color = Helpers::GetRandColor();
 					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-					pRenderTarget->FillEllipse(&ellipses[0][j - k].first, pBrush);
-					ellipses[0][j - k].second = color;
+					pRenderTarget->FillEllipse(&ellipses[0][j - k].ellipse, pBrush.Get());
+					ellipses[0][j - k].color = color;
 				}
 
 				EndDraw();
@@ -329,25 +345,25 @@ bool MainWindow::CheckThreeInARow()
 	{
 		for (int j = 0; j < ellipses[0].size(); ++j)
 		{
-			if (ellipses[i-2][j].second == ellipses[i-1][j].second &&
-				ellipses[i-2][j].second == ellipses[i][j].second)
+			if (Helpers::ColorEqual(ellipses[i-2][j].color, ellipses[i-1][j].color) &&
+				Helpers::ColorEqual(ellipses[i-2][j].color, ellipses[i][j].color))
 			{
 				BeginDraw();
 
 				for (int i2 = i; i2 > 2; --i2)
 				{
-					color = ellipses[i2 - 3][j].second;
+					color = ellipses[i2 - 3][j].color;
 					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-					pRenderTarget->FillEllipse(&ellipses[i2][j].first, pBrush);
-					ellipses[i2][j].second = color;
+					pRenderTarget->FillEllipse(&ellipses[i2][j].ellipse, pBrush.Get());
+					ellipses[i2][j].color = color;
 				}
 
 				for (int k = 0; k < 3; ++k)
 				{
-					color = GetRandColor();
+					color = Helpers::GetRandColor();
 					pRenderTarget->CreateSolidColorBrush(color, &pBrush);
-					pRenderTarget->FillEllipse(&ellipses[k][j].first, pBrush);
-					ellipses[k][j].second = color;
+					pRenderTarget->FillEllipse(&ellipses[k][j].ellipse, pBrush.Get());
+					ellipses[k][j].color = color;
 				}
 
 				EndDraw();
@@ -389,7 +405,7 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		if (FAILED(D2D1CreateFactory(
-			D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory)))
+			D2D1_FACTORY_TYPE_SINGLE_THREADED, pFactory.GetAddressOf())))
 		{
 			return -1;  // Fail CreateWindowEx.
 		}
@@ -397,7 +413,6 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_DESTROY:
 		DiscardGraphicsResources();
-		SafeRelease(&pFactory);
 		PostQuitMessage(0);
 		return 0;
 
