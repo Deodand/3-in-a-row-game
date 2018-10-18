@@ -4,9 +4,8 @@ int main()
 {
 	int x = 5;
 	int y = 2;
-	int z = x + y + 2;
 
-	std::cout << z;
+	std::cout << x + y << std::endl;
 
 	return 0;	
 }
