@@ -1,2 +1,5 @@
 configuration:
     - Release
+
+build:
+  project: WindowsProj.sln
