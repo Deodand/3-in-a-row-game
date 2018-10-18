@@ -4,4 +4,4 @@ configuration:
     - Release
 
 build:
-  project: WindowsProj.sln
+  project: build/ExampleProj.sln
