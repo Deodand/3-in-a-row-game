@@ -5,4 +5,4 @@ build_script:
  - compile.cmd
 
 test_script:
- - test.cmd
+ - '%APPVEYOR_BUILD_FOLDER%\build\tests\Debug\runTests.exe'
