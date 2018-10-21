@@ -6,7 +6,7 @@ TEST(basic_check, test_eq) {
 }
 
 TEST(basic_check, test_neq) {
-	EXPECT_EQ(sum(2, 1), 1);
+	EXPECT_EQ(sum(2, 1), 3);
 }
 
 
