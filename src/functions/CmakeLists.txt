@@ -1,0 +1,3 @@
+project(functions)
+
+add_library(functions STATIC sum_function.cpp sum_function.h)
