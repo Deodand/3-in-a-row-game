@@ -4,6 +4,7 @@ Debug
 Release
 build
 .git
+.vs
 windowsProj/Debug
 windowsProj/x64
 windowsProj/DPI-aware.txt
