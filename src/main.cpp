@@ -17,7 +17,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow)
 	std::srand(unsigned(std::time(0)));
 	MainWindow win;
 
-	if (!win.Create("Circle", WS_OVERLAPPEDWINDOW))
+	if (!win.Create("Circle", WS_OVERLAPPEDWINDOW)) 
 	{
 		return 0;
 	}
