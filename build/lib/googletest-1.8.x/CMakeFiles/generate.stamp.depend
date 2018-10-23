@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/lib/googletest-1.8.x/CMakeLists.txt
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeDependentOption.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/GNUInstallDirs.cmake

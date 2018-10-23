@@ -1,10 +1,1 @@
-.gitattributes.txt
-x64
-Debug
-Release
-build
-.vs
-.git
-windowsProj/Debug
-windowsProj/x64
-windowsProj/DPI-aware.txt
+*.opendb

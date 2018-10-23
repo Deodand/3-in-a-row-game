@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\sum_function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\sum_function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\CmakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{79F4A1A0-F2EB-3869-8FAC-A5B10203E01F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C4ACC425-2270-31BD-8F90-1671E617B7F4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

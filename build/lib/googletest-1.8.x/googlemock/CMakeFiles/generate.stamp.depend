@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/lib/googletest-1.8.x/googlemock/CMakeLists.txt
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/lib/googletest-1.8.x/googlemock/cmake/gmock.pc.in
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/lib/googletest-1.8.x/googlemock/cmake/gmock_main.pc.in
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CheckIncludeFile.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CheckLibraryExists.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CheckSymbolExists.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/FindPackageHandleStandardArgs.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/FindPackageMessage.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/FindThreads.cmake

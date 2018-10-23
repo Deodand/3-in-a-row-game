@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\207af0abda46a41b3dfc6b10e324a7b5\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8B379F8C-C90F-3A75-A6F2-535940F72ECB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

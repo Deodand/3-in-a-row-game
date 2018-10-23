@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8874A072-22D7-31B2-A2A7-6C330DB984AD}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ZERO_CHECK</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\1053e7001bd1b3ab34232cdbc56d84f4\generate.stamp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+E:\Programming\cmake-3.13.0-rc1-win64-x64\bin\cmake.exe -SC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game -BC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/ExampleProj.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/1053e7001bd1b3ab34232cdbc56d84f4/generate.stamp.rule;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCXXCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeRCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeSystem.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\Config.cmake.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\internal_utils.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\CmakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\tests\CMakeLists.txt;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeDependentOption.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeRCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckIncludeFile.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckLibraryExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckSymbolExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageMessage.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPythonInterp.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindThreads.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\GNUInstallDirs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\functions\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\gtest\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+E:\Programming\cmake-3.13.0-rc1-win64-x64\bin\cmake.exe -SC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game -BC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/ExampleProj.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/1053e7001bd1b3ab34232cdbc56d84f4/generate.stamp.rule;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCXXCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeRCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeSystem.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\Config.cmake.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\internal_utils.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\CmakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\tests\CMakeLists.txt;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeDependentOption.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeRCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckIncludeFile.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckLibraryExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckSymbolExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageMessage.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPythonInterp.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindThreads.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\GNUInstallDirs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\functions\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\gtest\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+E:\Programming\cmake-3.13.0-rc1-win64-x64\bin\cmake.exe -SC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game -BC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/ExampleProj.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/1053e7001bd1b3ab34232cdbc56d84f4/generate.stamp.rule;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCXXCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeRCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeSystem.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\Config.cmake.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\internal_utils.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\CmakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\tests\CMakeLists.txt;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeDependentOption.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeRCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckIncludeFile.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckLibraryExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckSymbolExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageMessage.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPythonInterp.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindThreads.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\GNUInstallDirs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\functions\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\gtest\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+E:\Programming\cmake-3.13.0-rc1-win64-x64\bin\cmake.exe -SC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game -BC:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/ExampleProj.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/1053e7001bd1b3ab34232cdbc56d84f4/generate.stamp.rule;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeCXXCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeRCCompiler.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\3.13.0-rc1\CMakeSystem.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googlemock\cmake\gmock_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\Config.cmake.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\gtest_main.pc.in;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\lib\googletest-1.8.x\googletest\cmake\internal_utils.cmake;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\CMakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\src\functions\CmakeLists.txt;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\tests\CMakeLists.txt;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeDependentOption.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakePackageConfigHelpers.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeRCInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckIncludeFile.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckLibraryExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\CheckSymbolExists.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageHandleStandardArgs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPackageMessage.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindPythonInterp.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\FindThreads.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\GNUInstallDirs.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\Windows.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;E:\Programming\cmake-3.13.0-rc1-win64-x64\share\cmake-3.13\Modules\WriteBasicConfigVersionFile.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\src\functions\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\lib\googletest-1.8.x\googlemock\gtest\CMakeFiles\generate.stamp;C:\Users\Admin\Source\Repos\Deodand\3-in-a-row-game\build\tests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

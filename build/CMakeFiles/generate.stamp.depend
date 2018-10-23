@@ -1,0 +1,23 @@
+# CMake generation dependency list for this directory.
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/CMakeLists.txt
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/3.13.0-rc1/CMakeCCompiler.cmake
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/3.13.0-rc1/CMakeCXXCompiler.cmake
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/3.13.0-rc1/CMakeRCCompiler.cmake
+C:/Users/Admin/Source/Repos/Deodand/3-in-a-row-game/build/CMakeFiles/3.13.0-rc1/CMakeSystem.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeCInformation.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeCXXInformation.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeCommonLanguageInclude.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeGenericSystem.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeInitializeConfigs.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeLanguageInformation.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeRCInformation.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeSystemSpecificInformation.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/CMakeSystemSpecificInitialize.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Compiler/MSVC-C.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Compiler/MSVC-CXX.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Platform/Windows-MSVC-C.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Platform/Windows-MSVC-CXX.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Platform/Windows-MSVC.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Platform/Windows.cmake
+E:/Programming/cmake-3.13.0-rc1-win64-x64/share/cmake-3.13/Modules/Platform/WindowsPaths.cmake
