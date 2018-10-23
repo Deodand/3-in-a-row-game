@@ -4,6 +4,7 @@ project(ExampleProj)
 
 include_directories(src/functions)
 include_directories(src/window)
+include_directories(src/helpers)
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
