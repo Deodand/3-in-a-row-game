@@ -18,6 +18,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow)
 	MainWindow win;
 
 	if (!win.Create("Circle", WS_OVERLAPPEDWINDOW))
+
 	{
 		return 0;
 	}
