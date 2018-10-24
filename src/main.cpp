@@ -6,7 +6,6 @@
 #include <ctime>
 #include <wrl\client.h>
 
-#include <sum_function.h>
 #include <window.h>
 
 
